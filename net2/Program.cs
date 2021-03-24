@@ -9,62 +9,30 @@ using System.Net.Http;
 
 namespace net2
 {
-    class Program
+    public class MainProgram
     {
         static void Main(string[] args)
         {
-            /*
-            var json = File.ReadAllText(@"C:\Users\Adrian\source\repos\net2\net2\students.json");
+            // tu wszystko działa i śmiga
+            var myWeatherTask = getWeather("Konin");
+            myWeatherTask.Wait();
 
-            List<Student> students = JsonConvert.DeserializeObject<List<Student>>(json);
-            foreach (var s in students)
-                Console.WriteLine(s.studentId + ":\t" + s.studentName);
-            */
-            string city = Console.ReadLine();
-
-            var task = api(city);
-            task.Wait();
-
+            Weather myWeather = myWeatherTask.Result;
+            Console.WriteLine("Temp " + myWeather.main.temp + "K");
+            Console.ReadLine();
         }
 
-
-        public static async Task<string> Test()
-        {
-            string call = "http://radoslaw.idzikowski.staff.iiar.pwr.wroc.pl/instruction/students.json";
-            HttpClient client = new HttpClient();
-            string response = await client.GetStringAsync(call);
-            List<Student> students = JsonConvert.DeserializeObject<List<Student>>(response);
-            foreach (var s in students)
-                Console.WriteLine(s.studentId + ":\t" + s.studentName);
-            return response;
-        }
-
-        public static async Task<string> api(string city)
+        public static async Task<Weather> getWeather(string city)
         {
             string call = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=08ba5dd31d0f7c44acd5ee3c8d364099";
-            Console.WriteLine(call);
             HttpClient client = new HttpClient();
             string response = await client.GetStringAsync(call);
-
             Weather result = JsonConvert.DeserializeObject<Weather>(response);
-
-            //Console.WriteLine(result.main.temp);
-            //Console.WriteLine(result.visibility);
-
-            Console.WriteLine("In " + city+" is max " + (result.main.temp_max-273.15));
-            return response;
+            return result;
         }
-
-
     }
 
-    class Student
-    {
-        public int studentId { set; get; }
-        public string studentName { set; get; }
-    }
-
-    class Weather
+    public class Weather
     {
         public int visibility { set; get; }
         public Main main { get; set; }
