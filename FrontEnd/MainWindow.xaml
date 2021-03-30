@@ -14,6 +14,7 @@
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="TitleBox" HorizontalAlignment="Left" Margin="185.072,10,0,0" TextWrapping="Wrap" Text="248942/248926" VerticalAlignment="Top" Height="29" Width="85" RenderTransformOrigin="0.977,-0.212" Grid.Column="2"/>
         <Button x:Name="StartButton" Content="Start" Grid.Column="1" HorizontalAlignment="Left" Margin="84,61,0,0" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2"/>
+        <TextBox Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="64,158,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
 
     </Grid>
 </Window>

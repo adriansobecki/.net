@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,15 +26,21 @@ namespace FrontEnd
             this.StartButton.Click += StartButton_Click1;
         }
 
+
         private void StartButton_Click1(object sender, RoutedEventArgs e)
         {
             // to nie działa, po kliknięciu przycisku, program się zawiesza
             // masz jakiś pomysł na to?
+
+
+
+            
             var myWeatherTask = MainProgram.getWeather("Konin");
             myWeatherTask.Wait();
 
             Weather myWeather = myWeatherTask.Result;
             TitleBox.Text = "Temp " + myWeather.main.temp;
+            
         }
     }
 }

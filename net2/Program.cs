@@ -15,7 +15,7 @@ namespace net2
         {
             // tu wszystko działa i śmiga
             var myWeatherTask = getWeather("Konin");
-            myWeatherTask.Wait();
+            //myWeatherTask.Wait();
 
             Weather myWeather = myWeatherTask.Result;
             Console.WriteLine("Temp " + myWeather.main.temp + "K");
@@ -30,22 +30,5 @@ namespace net2
             Weather result = JsonConvert.DeserializeObject<Weather>(response);
             return result;
         }
-    }
-
-    public class Weather
-    {
-        public int visibility { set; get; }
-        public Main main { get; set; }
-
-
-        public class Main
-        {
-            public double temp { set; get; }
-            public double temp_min { set; get; }
-            public double temp_max { set; get; }
-            public double pressure { set; get; }
-
-        }
-
     }
 }
