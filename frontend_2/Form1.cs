@@ -17,6 +17,16 @@ namespace frontend_2
         public Form1()
         {
             InitializeComponent();
+
+            var context = new databaseWeather();
+            var data = (from w in context.databaseWeathers select w).ToList<database>();
+            foreach (var w in data)
+            {
+                string toDisplay = w.name + " (" + w.datatime + ")";
+                toDisplay += ": " + (w.temp - 273.15).ToString() + "°C";
+                toDisplay += ": " + (w.description);
+                listBox1.Items.Add(toDisplay);
+            }
         }
 
         private Weather weather_thread(string city)
@@ -41,6 +51,10 @@ namespace frontend_2
             toDisplay += ": "+(myWeather.main.temp- 273.15).ToString()+ "°C";
             toDisplay += ": " + (myWeather.weather[0].description);
             listBox1.Items.Add(toDisplay);
+
+            var context = new databaseWeather();
+            context.databaseWeathers.Add(new database { name = myWeather.name, datatime = dataTime, temp =myWeather.main.temp, description =myWeather.weather[0].description });
+            context.SaveChanges();
         }
     }
 }

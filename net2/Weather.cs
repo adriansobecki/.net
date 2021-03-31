@@ -13,6 +13,8 @@ namespace net2
 
         public List<weatherDescription> weather { get; set; }
 
+        public string name { set; get; }
+
         public class Main
         {
             public double temp { set; get; }
