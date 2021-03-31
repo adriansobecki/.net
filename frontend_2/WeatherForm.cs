@@ -12,9 +12,9 @@ using net2;
 
 namespace frontend_2
 {
-    public partial class Form1 : Form
+    public partial class WeatherForm : Form
     {
-        public Form1()
+        public WeatherForm()
         {
             InitializeComponent();
 
